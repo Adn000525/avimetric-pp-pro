@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AviMetric PP - Inoiatech</title>
-
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-512.png">
+  <meta name="theme-color" content="#e65100">
   <style>
     :root{
       --primary-color:#2c5e1a; --secondary-color:#4a8c2a; --accent-color:#ff9800;
@@ -1636,7 +1638,15 @@ function renderDashMoney(amountDzd, dec=0){
     showNotification("Valeurs réinitialisées.","success");
   }
 </script>
-
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker enregistré', reg))
+                .catch(err => console.log('Erreur Service Worker', err));
+        });
+    }
+</script>
 
 </body>
 </html>
